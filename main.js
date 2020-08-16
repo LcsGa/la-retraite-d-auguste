@@ -150,6 +150,6 @@ const changeImg = () => {
     do {
         picId = Math.ceil(Math.random() * 20);
     } while (picId === lastPicId);
-    img.src = `./Auguste/${picId}.jpg`;
+    img.src = `./${picId}.jpg`;
     lastPicId = picId;
 };
