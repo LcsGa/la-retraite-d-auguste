@@ -21,6 +21,11 @@ window.onload = () => {
   movehead();
 };
 
+// Recharge la page au resize de celle-ci
+window.addEventListener("resize", () => {
+  window.location.reload();
+});
+
 const counter = () => {
   // initialize variables
   const currentDate = new Date();
@@ -76,8 +81,17 @@ window.addEventListener("keydown", (e) => {
 //--------------------------------------------------------------------
 //Éléments du DOM
 const head = document.querySelector(".head");
-const headHeightCenter = 102;
-const headWidthCenter = 78;
+let headHeightCenter;
+let headWidthCenter;
+
+//taille head
+if (window.innerHeight <= 500 || window.innerWidth <= 500) {
+  headHeightCenter = 41;
+  headWidthCenter = 33;
+} else {
+  headHeightCenter = 102;
+  headWidthCenter = 78;
+}
 
 const screenX = window.innerWidth;
 const screenY = window.innerHeight;
@@ -96,12 +110,6 @@ let posY = y.pos * y.sign;
 
 //Déplacement de la head
 const movehead = () => {
-  const currentDate = new Date();
-
-  if (currentDate - begining >= 60000 * 3) {
-    window.location.reload();
-  }
-
   head.style.left = posX + "px";
   head.style.top = posY + "px";
 
@@ -109,28 +117,29 @@ const movehead = () => {
   posY += y.pos * y.sign;
 
   direction(posX, posY);
+  // console.log(`X : ${posX}`, `Y : ${posY}`);
 
   setTimeout("movehead()", 20);
 };
 
 //détection collision
 const collision = (posX, posY) => {
-  if (posX <= 0) {
+  if (posX < 0) {
     return "top";
   }
-  if (posX >= screenX - 2 * headWidthCenter) {
+  if (posX > screenX - 2 * headWidthCenter) {
     return "bottom";
   }
 
-  if (posY <= 0) {
+  if (posY < 0) {
     return "left";
   }
-  if (posY >= screenY - 2 * headHeightCenter) {
+  if (posY > screenY - 2 * headHeightCenter) {
     return "right";
   }
 };
 
-// direction de la heade
+// direction de la head
 const direction = (posX, posY) => {
   switch (collision(posX, posY)) {
     case "top":
@@ -152,15 +161,18 @@ const direction = (posX, posY) => {
 };
 
 //Timer rebond
+let lastDate;
+let currentDate = new Date();
 const reboundTimer = () => {
-  const currentDate = new Date();
+  lastDate = currentDate;
+  currentDate = new Date();
 
-  if (currentDate - begining <= 40) {
+  if (currentDate - lastDate <= 40) {
     window.location.reload();
   }
 };
 
-//changer d'image
+// changer d'image
 let picId;
 let lastPicId = 0;
 const changeImg = () => {
