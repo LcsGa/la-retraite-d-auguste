@@ -124,33 +124,32 @@ const movehead = () => {
 
 //détection collision
 const collision = (posX, posY) => {
-  if (posX < 0 && posY < 0) {
+  if (posY < 0 && posX < 0) {
     return "corner"; //topLeft
   }
-  if (posX < 0 && posY > screenY - 2 * headHeightCenter) {
+  if (posY < 0 && posX > screenX - 2 * headWidthCenter) {
     return "corner"; //topRight
   }
   if (
-    posX > screenX - 2 * headWidthCenter < 0 &&
-    posY > screenY - 2 * headHeightCenter
+    posY > screenY - 2 * headHeightCenter &&
+    posX > screenX - 2 * headWidthCenter
   ) {
     return "corner"; //bottomRight
   }
-  if (posX > screenX - 2 * headWidthCenter && posX < 0) {
+  if (posY > screenY - 2 * headHeightCenter && posX < 0) {
     return "corner"; //bottomLeft
   }
-  if (posX < 0) {
+  if (posY < 0) {
     return "top";
   }
   if (posX > screenX - 2 * headWidthCenter) {
-    return "bottom";
-  }
-
-  if (posY < 0) {
-    return "left";
+    return "right";
   }
   if (posY > screenY - 2 * headHeightCenter) {
-    return "right";
+    return "bottom";
+  }
+  if (posX < 0) {
+    return "left";
   }
 };
 
@@ -165,13 +164,13 @@ const direction = (posX, posY) => {
     }
     case "top":
     case "bottom": {
-      x.sign *= -1;
+      y.sign *= -1;
       changeImg();
       break;
     }
     case "left":
     case "right": {
-      y.sign *= -1;
+      x.sign *= -1;
       changeImg();
       break;
     }
