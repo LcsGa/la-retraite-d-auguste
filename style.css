@@ -1,92 +1,106 @@
 /* general */
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* main */
 
 main {
-    min-height: 100vh;
-    width: 100%;
-    background: #222;
-    color: rgb(182, 170, 161);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: #222;
+  color: rgb(182, 170, 161);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 /* counter-bar */
 
 .counter-bar {
-    background: #111;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    height: 20vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    font-size: 2rem;
-    flex-wrap: wrap;
+  background: #111;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly; /* space-around sur IE pourrit */
+  align-items: center;
+  font-size: 2rem;
+  flex-wrap: wrap;
 }
 
 .counter-block {
-    text-align: center;
+  text-align: center;
 }
 
 .counter {
-    margin-top: 1rem;
-    font-size: 3.5rem;
-    color: rgb(233, 196, 168);
-    text-shadow: 0 0 20px rgba(233, 196, 168, 0.5);
+  margin-top: 1rem;
+  font-size: 3.5rem;
+  color: rgb(233, 196, 168);
+  text-shadow: 0 0 20px rgba(233, 196, 168, 0.5);
 }
 
 .milliseconds {
-    display: none;
+  display: none;
 }
 
 /* img */
 
-main img {
-    padding: 20px;
-    height: 80vh;
+.img {
+  height: 80vh;
+  display: flex;
+  align-items: center;
 }
 
-/* phone display */
-
-@media (max-width: 500px), (max-height: 500px) {
-    main {
-        font-size: 1.5rem;
-    }
-
-    .counter-block {
-        margin: 1.5rem 0.5rem;
-    }
-
-    .counter {
-        font-size: 3.5rem;
-        margin-top: 0.5rem;
-    }
-}
-
-/* phone display not rotated */
-
-@media (max-width: 500px) {
-    main {
-        flex-direction: column;
-    }
+.img img {
+  padding: 20px;
+  max-height: 80vh;
 }
 
 /* head */
 
 .head {
-    height: 200px;
+  height: 200px;
+  position: absolute;
+}
+
+/* phone display */
+
+@media (max-width: 500px), (max-height: 500px) {
+  main {
+    font-size: 0.5rem;
+  }
+
+  .counter-bar {
+    height: 20vh;
+    font-size: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .counter-block {
+    margin: 0.5rem 0.05rem;
+  }
+
+  .counter {
+    font-size: 1.5rem;
+    margin-top: 0.05rem;
+  }
+
+  main img {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  .head {
+    height: 80px;
     position: absolute;
+  }
 }
