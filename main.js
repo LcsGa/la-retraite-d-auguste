@@ -117,7 +117,6 @@ const movehead = () => {
   posY += y.pos * y.sign;
 
   direction(posX, posY);
-  console.log(`X : ${posX}`, `Y : ${posY}`);
 
   setTimeout("movehead()", 20);
 };
