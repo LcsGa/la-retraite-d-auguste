@@ -117,13 +117,28 @@ const movehead = () => {
   posY += y.pos * y.sign;
 
   direction(posX, posY);
-  // console.log(`X : ${posX}`, `Y : ${posY}`);
+  console.log(`X : ${posX}`, `Y : ${posY}`);
 
   setTimeout("movehead()", 20);
 };
 
 //détection collision
 const collision = (posX, posY) => {
+  if (posX < 0 && posY < 0) {
+    return "corner"; //topLeft
+  }
+  if (posX < 0 && posY > screenY - 2 * headHeightCenter) {
+    return "corner"; //topRight
+  }
+  if (
+    posX > screenX - 2 * headWidthCenter < 0 &&
+    posY > screenY - 2 * headHeightCenter
+  ) {
+    return "corner"; //bottomRight
+  }
+  if (posX > screenX - 2 * headWidthCenter && posX < 0) {
+    return "corner"; //bottomLeft
+  }
   if (posX < 0) {
     return "top";
   }
@@ -142,6 +157,12 @@ const collision = (posX, posY) => {
 // direction de la head
 const direction = (posX, posY) => {
   switch (collision(posX, posY)) {
+    case "corner": {
+      x.sign *= -1;
+      y.sign *= -1;
+      changeImg();
+      break;
+    }
     case "top":
     case "bottom": {
       x.sign *= -1;
