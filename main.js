@@ -26,6 +26,11 @@ window.addEventListener("resize", () => {
   window.location.reload();
 });
 
+// Recharge la page a la rotation du téléphone 
+window.addEventListener("orientationchange", () => {
+  window.location.reload();
+});
+
 const counter = () => {
   // initialize variables
   const currentDate = new Date();
