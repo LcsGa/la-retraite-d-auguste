@@ -65,6 +65,20 @@ const millisecondsCounter = () => {
 let ms = false;
 window.addEventListener("keydown", (e) => displayMs(e));
 
+window.addEventListener("touchstart", () => {
+  const touchStart = new Date();
+});
+
+window.addEventListener("touchend", () => {
+  const touchEnd = new Date();
+
+  if (touchEnd - touchStart >= 1500) {
+    displayMs(32);
+  }
+
+  console.log(touchEnd - touchStart);
+});
+
 // Function show ms
 const displayMs = (e) => {
   if (e.keyCode === 32 && !ms) {
