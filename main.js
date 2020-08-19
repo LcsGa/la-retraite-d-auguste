@@ -88,14 +88,17 @@ window.addEventListener("keydown", (e) => {
 const head = document.querySelector(".head");
 let headHeightCenter;
 let headWidthCenter;
+let headVelocity;
 
 //taille head
 if (window.innerHeight <= 500 || window.innerWidth <= 500) {
   headHeightCenter = 41;
   headWidthCenter = 33;
+  headVelocity = 50;
 } else {
   headHeightCenter = 102;
   headWidthCenter = 78;
+  headVelocity = 20;
 }
 
 const screenX = window.innerWidth;
@@ -123,7 +126,7 @@ const movehead = () => {
 
   direction(posX, posY);
 
-  setTimeout("movehead()", 20);
+  setTimeout("movehead()", headVelocity);
 };
 
 //détection collision
