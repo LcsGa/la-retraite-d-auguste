@@ -11,6 +11,8 @@ const img = document.querySelector("img");
 
 const begining = new Date();
 
+const head = document.querySelector(".head");
+
 // Date de départ à la retraite
 const retirementDate = new Date("2021-09-01T16:00:00");
 
@@ -69,16 +71,8 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-window.addEventListener("touchstart", () => {
-  const touchStart = new Date();
-});
-
-window.addEventListener("touchend", () => {
-  const touchEnd = new Date();
-
-  if (touchEnd - touchStart >= 1000) {
-    displayMs();
-  }
+head.addEventListener("click", () => {
+  displayMs();
 });
 
 // Function show ms
@@ -102,8 +96,7 @@ const displayMs = () => {
 
 //Auguste tête rebondissante
 //--------------------------------------------------------------------
-//Éléments du DOM
-const head = document.querySelector(".head");
+//Éléments à manipuler
 let headHeight;
 let headWidth;
 let headVelocity;
