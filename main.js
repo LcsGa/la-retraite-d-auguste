@@ -13,6 +13,9 @@ const begining = new Date();
 
 const head = document.querySelector(".head");
 
+// Anti click droit
+document.oncontextmenu = new Function("return false");
+
 // Date de départ à la retraite
 const retirementDate = new Date("2021-09-01T16:00:00");
 
