@@ -26,7 +26,7 @@ window.addEventListener("resize", () => {
   window.location.reload();
 });
 
-// Recharge la page a la rotation du téléphone 
+// Recharge la page a la rotation du téléphone
 window.addEventListener("orientationchange", () => {
   window.location.reload();
 });
@@ -63,9 +63,11 @@ const millisecondsCounter = () => {
 
 // switch display mode : {Days + Hours + Minutes + Seconds} OR {Milliseconds} only
 let ms = false;
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", (e) => displayMs(e));
+
+// Function show ms
+const displayMs = (e) => {
   if (e.keyCode === 32 && !ms) {
-    console.log(blocks);
     blocks[0].style.display = "none";
     blocks[1].style.display = "none";
     blocks[2].style.display = "none";
@@ -80,24 +82,24 @@ window.addEventListener("keydown", (e) => {
     blocks[4].style.display = "none";
     ms = false;
   }
-});
+};
 
 //Auguste tête rebondissante
 //--------------------------------------------------------------------
 //Éléments du DOM
 const head = document.querySelector(".head");
-let headHeightCenter;
-let headWidthCenter;
+let headHeight;
+let headWidth;
 let headVelocity;
 
 //taille head
 if (window.innerHeight <= 500 || window.innerWidth <= 500) {
-  headHeightCenter = 41;
-  headWidthCenter = 33;
+  headHeight = 80;
+  headWidth = 61.7;
   headVelocity = 50;
 } else {
-  headHeightCenter = 102;
-  headWidthCenter = 78;
+  headHeight = 200;
+  headWidth = 154.3;
   headVelocity = 20;
 }
 
@@ -134,25 +136,22 @@ const collision = (posX, posY) => {
   if (posY < 0 && posX < 0) {
     return "corner"; //topLeft
   }
-  if (posY < 0 && posX > screenX - 2 * headWidthCenter) {
+  if (posY < 0 && posX > screenX - headWidth) {
     return "corner"; //topRight
   }
-  if (
-    posY > screenY - 2 * headHeightCenter &&
-    posX > screenX - 2 * headWidthCenter
-  ) {
+  if (posY > screenY - headHeight && posX > screenX - headWidth) {
     return "corner"; //bottomRight
   }
-  if (posY > screenY - 2 * headHeightCenter && posX < 0) {
+  if (posY > screenY - headHeight && posX < 0) {
     return "corner"; //bottomLeft
   }
   if (posY < 0) {
     return "top";
   }
-  if (posX > screenX - 2 * headWidthCenter) {
+  if (posX > screenX - headWidth) {
     return "right";
   }
-  if (posY > screenY - 2 * headHeightCenter) {
+  if (posY > screenY - headHeight) {
     return "bottom";
   }
   if (posX < 0) {
