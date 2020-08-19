@@ -209,3 +209,16 @@ const changeImg = () => {
   img.src = `./${picId}.jpg`;
   lastPicId = picId;
 };
+
+document.addEventListener("click", () => {
+  let rotation = 0;
+
+  const rotate = setInterval(() => {
+    head.style.transform = `rotate(${rotation}deg)`;
+    rotation += 10;
+    if (rotation === 360) {
+      head.style.transform = "rotate(0)";
+      clearInterval(rotate);
+    }
+  }, 5);
+});
