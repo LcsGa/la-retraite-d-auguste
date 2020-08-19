@@ -63,7 +63,11 @@ const millisecondsCounter = () => {
 
 // switch display mode : {Days + Hours + Minutes + Seconds} OR {Milliseconds} only
 let ms = false;
-window.addEventListener("keydown", (e) => displayMs(e));
+window.addEventListener("keydown", (e) => {
+  if (e.keyCode === 32) {
+    displayMs();
+  }
+});
 
 window.addEventListener("touchstart", () => {
   const touchStart = new Date();
@@ -72,23 +76,21 @@ window.addEventListener("touchstart", () => {
 window.addEventListener("touchend", () => {
   const touchEnd = new Date();
 
-  if (touchEnd - touchStart >= 1500) {
-    displayMs(32);
+  if (touchEnd - touchStart >= 1000) {
+    displayMs();
   }
-
-  console.log(touchEnd - touchStart);
 });
 
 // Function show ms
-const displayMs = (e) => {
-  if (e.keyCode === 32 && !ms) {
+const displayMs = () => {
+  if (!ms) {
     blocks[0].style.display = "none";
     blocks[1].style.display = "none";
     blocks[2].style.display = "none";
     blocks[3].style.display = "none";
     blocks[4].style.display = "block";
     ms = true;
-  } else if (e.keyCode === 32 && ms) {
+  } else if (ms) {
     blocks[0].style.display = "block";
     blocks[1].style.display = "block";
     blocks[2].style.display = "block";
